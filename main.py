@@ -5,21 +5,25 @@
 
 from code.gomoku import Gomoku
 import random
+from code.random_ai import RandomAI
 
 def main():
     # Use a breakpoint in the code line below to debug your script.
      # Press ⌘F8 to toggle the breakpoint.
 
     game = Gomoku()
+    player1 = RandomAI()
+    player2 = RandomAI()
     while not game.game_over():
-        try:
-            x = random.randint(0,14)
-            y = random.randint(0,14)
-            game.make_move(x,y)
-            print(game)
-            input('===' * 20)
-        except ValueError as e:
-            continue
+        if game.turn == 'x':
+            move = player1.make_move(game)
+        else:
+            move = player2.make_move(game)
+        game.make_move(move[0], move[1])
+        print(game)
+        input('=' * 50)
+
+
     print("Done :)")
 
 # Press the green button in the gutter to run the script.

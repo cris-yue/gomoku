@@ -6,6 +6,17 @@ class Gomoku:
         self.board = [[None] * N for i in range(N)]
         self.turn = "x"
 
+
+
+    def get_moves(self):
+        ret = []
+        for it, row in enumerate(self.board):
+            for jt, cell in enumerate(row):
+                if cell == None:
+                    ret.append([it,jt])
+        return ret
+
+
     def __str__(self):
         ret = ''
         for row in self.board:
@@ -22,6 +33,7 @@ class Gomoku:
         return ret
     __repr__ = __str__
 
+
     def make_move(self,x,y):
         if self.board[x][y] != None:
             raise ValueError("place occupied")
@@ -29,6 +41,7 @@ class Gomoku:
         self.turn = 'x' if self.turn == 'o' else 'o'
 
     def game_over(self):
+        if len(self.get_moves()) == 0: return True
         for i in range(N):
             for j in range(N):
                 if self.board[i][j] != None and j< N-4: # horizontal
