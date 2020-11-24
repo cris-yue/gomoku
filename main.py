@@ -1,19 +1,17 @@
 # This is a sample Python script.
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
 from code.gomoku import Gomoku
 import random
 from code.random_ai import RandomAI
+from code.minimax_ai import MiniMaxAI
 
 def main():
     # Use a breakpoint in the code line below to debug your script.
      # Press ⌘F8 to toggle the breakpoint.
 
     game = Gomoku()
-    player1 = RandomAI()
-    player2 = RandomAI()
+    player1 = RandomAI(player_one=True)
+    player2 = MiniMaxAI(player_one=False)
     while not game.game_over():
         if game.turn == 'x':
             move = player1.make_move(game)

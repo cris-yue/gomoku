@@ -6,8 +6,6 @@ class Gomoku:
         self.board = [[None] * N for i in range(N)]
         self.turn = "x"
 
-
-
     def get_moves(self):
         ret = []
         for it, row in enumerate(self.board):
