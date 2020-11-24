@@ -4,25 +4,22 @@ N=15
 class MiniMaxAI:
     def __init__(self,player_one):
         self.player_one = player_one
-        self.distance_Matrix = [[9999999] * N for i in range(N)]
-        def distance(mat, i, j, dist):
+        self.distance_Matrix = [
+            [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+            [6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6],
+            [6, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6],
+            [6, 5, 4, 3, 3, 3, 3, 3, 3, 3, 4, 5, 6],
+            [6, 5, 4, 3, 2, 2, 2, 2, 2, 3, 4, 5, 6],
+            [6, 5, 4, 3, 2, 1, 1, 1, 2, 3, 4, 5, 6],
+            [6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5, 6],
+            [6, 5, 4, 3, 2, 1, 1, 1, 2, 3, 4, 5, 6],
+            [6, 5, 4, 3, 2, 2, 2, 2, 2, 3, 4, 5, 6],
+            [6, 5, 4, 3, 3, 3, 3, 3, 3, 3, 4, 5, 6],
+            [6, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6],
+            [6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6],
+            [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+        ]
 
-            if i<0 or i >14 or j < 0 or j > 14:
-                return
-            if dist >mat[i][j]:
-                return
-            print(i,j,dist)
-            mat[i][j] = dist
-            distance(mat,i+1,j,dist+1)
-            distance(mat,i,j+1,dist+1)
-            distance(mat,i-1,j,dist+1)
-            distance(mat,i,j-1,dist+1)
-            distance(mat,i+1,j+1,dist+1)
-            distance(mat,i+1,j-1,dist+1)
-            distance(mat,i-1,j+1,dist+1)
-            distance(mat,i-1,j-1,dist+1)
-        distance(self.distance_Matrix,7,7,0)
-        print(self.distance_Matrix)
 
     def make_move(self, game):
         return random.choice(game.get_moves())
