@@ -5,6 +5,7 @@ class Gomoku:
     def __init__(self):
         self.board = [[None] * N for i in range(N)]
         self.turn = "x"
+        self.winner = None
 
     def get_moves(self):
         ret = []
@@ -39,7 +40,9 @@ class Gomoku:
         self.turn = 'x' if self.turn == 'o' else 'o'
 
     def game_over(self):
-        if len(self.get_moves()) == 0: return True
+        if len(self.get_moves()) == 0:
+            self.winner = 0
+            return True
         for i in range(N):
             for j in range(N):
                 if self.board[i][j] != None and j< N-4: # horizontal
@@ -49,7 +52,7 @@ class Gomoku:
                             win = False
                             break
                     if win:
-                        print("horizontal")
+                        self.winner = 1 if self.board[i][j] == 'x' else 2
                         return True
                 if self.board[i][j] != None and i < N-4: #vertical
                     win = True
@@ -58,7 +61,7 @@ class Gomoku:
                             win = False
                             break
                     if win:
-                        print("vertical")
+                        self.winner = 1 if self.board[i][j] == 'x' else 2
                         return True
                 if self.board[i][j] != None and 4 < i and j< N-4: #right diagonal
                     win = True
@@ -67,7 +70,7 @@ class Gomoku:
                             win = False
                             break
                     if win:
-                        print("right diagonal")
+                        self.winner = 1 if self.board[i][j] == 'x' else 2
                         return True
                 if self.board[i][j] != None and i < N-4 and j< N-4: #left diagonal
                     win = True
@@ -76,6 +79,6 @@ class Gomoku:
                             win = False
                             break
                     if win:
-                        print("left diagonal")
+                        self.winner = 1 if self.board[i][j] == 'x' else 2
                         return True
         return False
